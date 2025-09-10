@@ -87,7 +87,12 @@ export async function onRequestPost(context) {
             JSON.stringify([{ 'src': `/file/${fileId}.${fileExtension}` }]),
             {
                 status: 200,
-                headers: { 'Content-Type': 'application/json' }
+                // headers: { 'Content-Type': 'application/json' }
+                headers: { 
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Max-Age": "600",
+                }
             }
         );
     } catch (error) {
@@ -96,7 +101,12 @@ export async function onRequestPost(context) {
             JSON.stringify({ error: error.message }),
             {
                 status: 500,
-                headers: { 'Content-Type': 'application/json' }
+                // headers: { 'Content-Type': 'application/json' }
+                headers: { 
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Max-Age": "600",
+                }
             }
         );
     }
