@@ -1,5 +1,25 @@
 import { errorHandling, telemetryData } from "./utils/middleware";
 
+/**
+ * @doc {official} https://developers.cloudflare.com/pages/functions/examples/cors-headers/
+ * */
+export async function onRequestOptions(context) {
+    const { request, env, params } = context;
+    return new Response(
+            null,
+            {
+                status: 204,
+                headers: { 
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Headers": "*",
+                    "Access-Control-Allow-Methods": "POST, OPTIONS",
+                    "Access-Control-Max-Age": "600",
+                }
+            }
+        );
+}
+
+
 export async function onRequestPost(context) {
     const { request, env } = context;
 
